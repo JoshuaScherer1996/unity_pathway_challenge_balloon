@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerControllerX : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class PlayerControllerX : MonoBehaviour
 
     private const float FloatForce = 20.0f;
     private const float GravityModifier = 1.5f;
+    private const float TopBound = 14.5f;
+    private const float BottomBound = 0.5f;
     private Rigidbody _playerRb;
 
     public ParticleSystem explosionParticle;
@@ -35,6 +38,16 @@ public class PlayerControllerX : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && !gameOver)
         {
             _playerRb.AddForce(Vector3.up * FloatForce);
+        }
+
+        if (gameObject.transform.position.y >= TopBound)
+        {
+            _playerRb.AddForce(Vector3.down * 0.5f, ForceMode.Impulse);
+        }
+        
+        if (gameObject.transform.position.y <= BottomBound)
+        {
+            _playerRb.AddForce(Vector3.up * 0.5f, ForceMode.Impulse);
         }
     }
 
