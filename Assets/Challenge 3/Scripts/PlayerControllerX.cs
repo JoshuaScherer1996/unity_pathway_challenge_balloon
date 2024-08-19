@@ -4,7 +4,7 @@ public class PlayerControllerX : MonoBehaviour
 {
     public bool gameOver;
 
-    public float floatForce;
+    private const float FloatForce = 20.0f;
     private const float GravityModifier = 1.5f;
     private Rigidbody _playerRb;
 
@@ -34,7 +34,7 @@ public class PlayerControllerX : MonoBehaviour
         // While space is pressed and player is low enough, float up
         if (Input.GetKey(KeyCode.Space) && !gameOver)
         {
-            _playerRb.AddForce(Vector3.up * floatForce);
+            _playerRb.AddForce(Vector3.up * FloatForce);
         }
     }
 
